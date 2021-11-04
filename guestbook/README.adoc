@@ -1,0 +1,30 @@
+ifdef::env-github[]
+:toc: macro
+:outfilesuffix: .adoc
+:!toc-title:
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+= **Guest Demo
+
+:imagesdir: ../img
+
+- Create an application using ACM 
+
+NOTE: This process is based on ACM 2.3 and OCP 4.8
+
+image::guestbook1.png[500,500]
+
+image::guestbook2.png[500,500]
+
+in the second picture you see that I have selected a specific cluster to deploy this application.
+the value of the name is the name of your cluster in ACM
+
+image::acm-clusters.png[500,500]
+
+NOTE: 
+
