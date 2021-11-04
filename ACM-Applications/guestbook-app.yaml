@@ -1,7 +1,7 @@
 apiVersion: app.k8s.io/v1beta1
 kind: Application
 metadata:
-  name: guestbook-app
+  name: app1
   namespace: open-cluster-management
   annotations:
     apps.open-cluster-management.io/deployables: ''
@@ -15,36 +15,36 @@ spec:
       - key: app
         operator: In
         values:
-          - guestbook-app
+          - app1
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: Subscription
 metadata:
-  name: guestbook-app-subscription-1
+  name: app1-subscription-1
   namespace: open-cluster-management
   annotations:
-    apps.open-cluster-management.io/deployables: 'open-cluster-management/guestbook-app-subscription-1-resources-guestbook-redis-slave-service,open-cluster-management/guestbook-app-subscription-1-resources-guestbook-runasanyuid-serviceaccount,open-cluster-management/guestbook-app-subscription-1-resources-guestbook-anyuid-securitycontextconstraints,open-cluster-management/guestbook-app-subscription-1-resources-guestbook-frontend-service,open-cluster-management/guestbook-app-subscription-1-resources-guestbook-redis-master-service,open-cluster-management/guestbook-app-subscription-1-resources-guestbook-redis-master-deployment,open-cluster-management/guestbook-app-subscription-1-resources-guestbook-frontend-deployment,open-cluster-management/guestbook-app-subscription-1-resources-guestbook-guestbook-route-route,open-cluster-management/guestbook-app-subscription-1-resources-guestbook-redis-slave-deployment'
-    apps.open-cluster-management.io/git-branch: ''
-    apps.open-cluster-management.io/git-path: resources/guestbook
+    apps.open-cluster-management.io/deployables: 'open-cluster-management/app1-subscription-1-guestbook-frontend-service,open-cluster-management/app1-subscription-1-guestbook-redis-master-deployment,open-cluster-management/app1-subscription-1-acm-applications-guestbook-app-subscription-1-subscription,open-cluster-management/app1-subscription-1-acm-applications-guestbook-app-placement-1-placementrule,open-cluster-management/app1-subscription-1-guestbook-demoanyuid-securitycontextconstraints,open-cluster-management/app1-subscription-1-guestbook-frontend-deployment,open-cluster-management/app1-subscription-1-guestbook-runasanyuid-serviceaccount,open-cluster-management/app1-subscription-1-acm-applications-guestbook-app-application,open-cluster-management/app1-subscription-1-guestbook-guestbook-route-route,open-cluster-management/app1-subscription-1-guestbook-redis-master-service,open-cluster-management/app1-subscription-1-guestbook-redis-slave-deployment,open-cluster-management/app1-subscription-1-guestbook-redis-slave-service'
+    apps.open-cluster-management.io/git-branch: main
+    apps.open-cluster-management.io/git-path: ''
     apps.open-cluster-management.io/reconcile-option: merge
   labels:
-    app: guestbook-app
-    app.kubernetes.io/part-of: guestbook-app
+    app: app1
+    app.kubernetes.io/part-of: app1
     apps.open-cluster-management.io/reconcile-rate: medium
 spec:
-  channel: ggithubcom-open-cluster-management-deploy-ns/ggithubcom-open-cluster-management-deploy
+  channel: nsgithubcom-keyvan-rh-acm-demo-ns/nsgithubcom-keyvan-rh-acm-demo
   placement:
     placementRef:
-      name: guestbook-app-placement-1
+      name: app1-placement-1
       kind: PlacementRule
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
 metadata:
-  name: guestbook-app-placement-1
+  name: app1-placement-1
   namespace: open-cluster-management
   labels:
-    app: guestbook-app
+    app: app1
 spec:
   clusterSelector:
     matchLabels:
