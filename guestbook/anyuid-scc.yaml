@@ -1,6 +1,36 @@
 apiVersion: security.openshift.io/v1
 kind: SecurityContextConstraints
+allowHostPorts: false
+priority: 10
+requiredDropCapabilities:
+  - MKNOD
+allowPrivilegedContainer: false
+runAsUser:
+  type: RunAsAny
+users:
+  - 'system:serviceaccount:open-cluster-management:runasanyuid'
+allowHostDirVolumePlugin: false
+allowHostIPC: false
+seLinuxContext:
+  type: MustRunAs
+readOnlyRootFilesystem: false
 metadata:
   name: demoanyuid
-users:
-- system:serviceaccount:open-cluster-management:runasanyuid
+fsGroup:
+  type: RunAsAny
+groups:
+  - 'system:cluster-admins'
+defaultAddCapabilities: null
+supplementalGroups:
+  type: RunAsAny
+volumes:
+  - configMap
+  - downwardAPI
+  - emptyDir
+  - persistentVolumeClaim
+  - projected
+  - secret
+allowHostPID: false
+allowHostNetwork: false
+allowPrivilegeEscalation: true
+allowedCapabilities: null
